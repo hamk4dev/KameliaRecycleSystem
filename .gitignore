@@ -1,0 +1,29 @@
+# Build outputs
+bin/
+obj/
+artifacts/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs and runtime data
+*.log
+DataStorage/Backups/*
+DataStorage/Database/*
+DataStorage/Exports/*
+DataStorage/Logs/*
+DataStorage/Temp/*
+
+# Keep folder structure
+!DataStorage/Backups/.gitkeep
+!DataStorage/Database/.gitkeep
+!DataStorage/Exports/.gitkeep
+!DataStorage/Logs/.gitkeep
+!DataStorage/Temp/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
