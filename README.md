@@ -1,92 +1,95 @@
 # Kamelia Recycle System
 
-Kamelia Recycle System adalah aplikasi desktop berbasis Windows Forms untuk membantu pengelolaan operasional TPS3R, data warga, iuran, keuangan, laporan, keamanan akses, dan kebutuhan administrasi harian.
+![Platform](https://img.shields.io/badge/platform-Windows-0A66C2)
+![Framework](https://img.shields.io/badge/.NET-8.0-512BD4)
+![UI](https://img.shields.io/badge/UI-Windows%20Forms-1F6FEB)
+![Status](https://img.shields.io/badge/status-Prototype-F59E0B)
 
-Repositori ini saat ini berfungsi sebagai fondasi proyek: struktur modul sudah disiapkan, alur login dasar sudah berjalan, dashboard awal sudah tersedia, dan pondasi pengembangan berikutnya sudah dipetakan agar implementasi bisa dilanjutkan secara bertahap.
+Kamelia Recycle System merupakan aplikasi desktop berbasis Windows yang disiapkan untuk mendukung pengelolaan TPS3R secara lebih tertib, terukur, dan terdokumentasi. Sistem ini diarahkan untuk menangani administrasi warga, iuran, transaksi keuangan, kontrol akses, pelaporan, serta kebutuhan operasional yang memerlukan jejak audit.
 
-## Tujuan Proyek
+Pada tahap saat ini, repositori berfungsi sebagai fondasi pengembangan. Struktur modul utama telah disusun, alur autentikasi awal sudah berjalan, dan dashboard dasar telah tersedia sebagai titik masuk aplikasi.
 
-- Menyediakan sistem administrasi TPS3R yang lebih rapi, terpusat, dan mudah diaudit.
-- Mempermudah pengelolaan data warga, tagihan iuran, pemasukan, pengeluaran, dan laporan operasional.
-- Menyediakan dasar keamanan aplikasi melalui autentikasi, otorisasi, logging, dan audit trail.
-- Menjadi basis pengembangan aplikasi operasional yang dapat dipakai secara berkelanjutan di lingkungan kerja nyata.
+## Profil Singkat
 
-## Kondisi Saat Ini
+| Aspek | Deskripsi |
+| --- | --- |
+| Nama sistem | `Kamelia Recycle System` |
+| Jenis aplikasi | Desktop application |
+| Platform target | Windows |
+| Basis teknologi | .NET 8, Windows Forms, Entity Framework Core |
+| Domain utama | TPS3R, warga, iuran, keuangan, pelaporan, audit |
+| Tahap pengembangan | Prototype foundation |
 
-Status implementasi saat ini:
+## Arah dan Tujuan Pengembangan
 
-- Proyek sudah dapat di-`build` dan di-`publish` untuk Windows.
-- Login form sudah terhubung ke dashboard utama.
-- Struktur folder utama untuk security, data, business, reporting, backup, utilities, dan configuration sudah tersedia.
-- Sebagian file masih berupa scaffold dan placeholder yang disiapkan untuk pengembangan lanjutan.
-- Penyimpanan data saat ini masih menggunakan `InMemoryDatabase` untuk kebutuhan audit dan pengujian awal.
+Proyek ini dikembangkan untuk menghadirkan sistem administrasi TPS3R yang lebih terpusat dan lebih mudah diaudit dibandingkan proses manual. Dalam pengembangannya, sistem diarahkan untuk mengurangi pencatatan berulang, memperjelas status data operasional, memperkuat pengendalian akses pengguna, dan menyediakan dasar yang layak untuk berkembang menjadi aplikasi operasional harian.
 
-## Fitur yang Sudah Tersedia
+## Status Implementasi
 
-- Login dasar dengan validasi user.
-- Hash password menggunakan BCrypt.
-- JWT service dan user session model dasar.
-- Dashboard utama awal setelah login.
-- Startup error logging ke folder log aplikasi.
-- Struktur modul pelaporan, backup, dan utilitas sebagai fondasi pengembangan.
+| Area | Status | Keterangan |
+| --- | --- | --- |
+| Startup aplikasi | Tersedia | Mekanisme startup dan logging error telah tersedia |
+| Login | Tersedia | Login dasar telah terhubung ke dashboard |
+| Dashboard utama | Tersedia | Berfungsi sebagai landing dashboard awal |
+| Modul warga | Draft | Struktur dasar tersedia, implementasi penuh belum selesai |
+| Modul iuran | Draft | Entity dan kontrak dasar telah disiapkan |
+| Modul keuangan | Draft | Fondasi modul tersedia, integrasi end-to-end belum final |
+| Pelaporan | Draft | Generator dan exporter masih berupa pondasi |
+| Backup dan restore | Draft | Struktur kerja tersedia, belum final untuk operasional |
+| Persistensi data | Sementara | Masih menggunakan `InMemoryDatabase` untuk audit awal |
 
-## Keterbatasan Saat Ini
+## Cakupan Arsitektur
 
-- Belum menggunakan database persisten seperti SQLite atau SQL Server produksi.
-- Banyak form manajemen masih berupa kerangka UI awal.
-- Laporan dan ekspor belum sepenuhnya terhubung ke data nyata.
-- Validasi bisnis masih belum lengkap untuk semua modul.
-- Belum ada test otomatis.
+Repositori ini memakai pendekatan modular agar pengembangan dapat dilakukan bertahap tanpa mengubah fondasi sistem secara berulang.
 
-## Arsitektur Proyek
+| Lapisan / Folder | Fungsi utama |
+| --- | --- |
+| `Core/` | Menyimpan entity domain, DTO, enum, exception, dan interface |
+| `Application/` | Menyimpan service dan validator tingkat aplikasi |
+| `Infrastructure/` | Menyimpan repository, EF Core context, dan implementasi security |
+| `Presentation/` | Menyimpan Windows Forms, custom control, dan view model |
+| `Business/` | Menyimpan service bisnis, calculator, dan validator tambahan |
+| `Reporting/` | Menyimpan generator laporan, exporter, printer, dan template |
+| `Security/` | Menyimpan scaffold autentikasi, otorisasi, dan enkripsi |
+| `Data/` | Menyimpan struktur model dan repository target arsitektur |
+| `Backup/` | Menyimpan komponen backup, restore, verifikasi, dan scheduler |
+| `Utilities/` | Menyimpan helper, extension, constants, dan logging umum |
+| `Configuration/` | Menyimpan representasi konfigurasi aplikasi |
+| `DataStorage/` | Menyimpan kebutuhan runtime seperti database, backup, export, temp, dan log |
 
-Repositori ini menggunakan pendekatan modular agar pengembangan lebih mudah dipelihara.
+## Alur Aplikasi Saat Ini
 
-- `Core/`
-  Berisi entitas domain, enum, exception, DTO, dan interface utama.
-- `Application/`
-  Berisi service dan validator tingkat aplikasi.
-- `Infrastructure/`
-  Berisi implementasi data access, EF Core context, repository, dan security service.
-- `Presentation/`
-  Berisi Windows Forms, control, dan view model untuk UI desktop.
-- `Business/`
-  Berisi kalkulator, service bisnis, dan validator lintas modul.
-- `Reporting/`
-  Berisi generator laporan, exporter, printer, dan template.
-- `Security/`
-  Berisi scaffold terpisah untuk autentikasi, otorisasi, dan enkripsi.
-- `Data/`
-  Berisi scaffold model dan repository versi target struktur sistem.
-- `Backup/`
-  Berisi scaffold backup, restore, verifikasi, dan scheduler.
-- `Utilities/`
-  Berisi helper, extension, konstanta, dan komponen logging umum.
-- `Configuration/`
-  Berisi model konfigurasi aplikasi.
-- `DataStorage/`
-  Berisi lokasi penyimpanan database, backup, export, temp, dan log runtime.
+Alur kerja aplikasi pada versi saat ini dapat diringkas sebagai berikut:
+
+```text
+Program.cs
+   -> Inisialisasi aplikasi
+   -> Menyiapkan context dan data audit awal
+   -> Menampilkan LoginForm
+   -> Memproses autentikasi melalui service keamanan
+   -> Mengarahkan pengguna ke MainDashboardForm
+```
 
 ## Teknologi yang Digunakan
 
-- .NET 8
-- Windows Forms
-- Entity Framework Core
-- BCrypt
-- JWT (`System.IdentityModel.Tokens.Jwt`)
+| Teknologi | Peran dalam proyek |
+| --- | --- |
+| .NET 8 | Runtime dan fondasi aplikasi |
+| Windows Forms | Antarmuka desktop |
+| Entity Framework Core | Data access dan context model |
+| BCrypt | Hash password |
+| JWT | Model token untuk session dan autentikasi |
 
-## Cara Menjalankan Proyek
+## Menjalankan Proyek
 
-### Melalui source code
+### Dari source code
 
 ```powershell
 dotnet build
 dotnet run
 ```
 
-### Melalui hasil publish Windows
-
-Executable hasil publish berada di:
+### Dari hasil publish Windows
 
 ```text
 artifacts/publish/win-x64/KameliaRecycleSystem.exe
@@ -94,122 +97,43 @@ artifacts/publish/win-x64/KameliaRecycleSystem.exe
 
 ## Akun Audit Sementara
 
-Untuk audit awal, gunakan akun berikut:
+| Field | Nilai |
+| --- | --- |
+| Username | `admin` |
+| Password | `Admin123` |
 
-- Username: `admin`
-- Password: `Admin123`
+> Akun ini disediakan untuk verifikasi awal aplikasi dan tidak ditujukan sebagai konfigurasi produksi.
 
-## Rencana Pengembangan
+## Roadmap Pengembangan
 
-### Fase 1 - Stabilisasi Fondasi
+| Fase | Fokus utama | Hasil yang dituju |
+| --- | --- | --- |
+| Fase 1 - Stabilisasi Fondasi | Penyempurnaan startup, login, logout, dashboard, serta perapihan dependency flow | Aplikasi stabil untuk audit dasar dan struktur kode lebih konsisten |
+| Fase 2 - Persistensi Data | Migrasi dari `InMemoryDatabase` ke SQLite serta penyiapan migrasi database | Data tetap tersimpan setelah aplikasi ditutup |
+| Fase 3 - Modul Operasional Inti | Penyelesaian warga, iuran, pemasukan, pengeluaran, dan role dasar | Modul inti siap dipakai secara fungsional |
+| Fase 4 - Pelaporan dan Audit | Integrasi laporan dengan data riil, ekspor dokumen, dan activity log | Sistem mampu menghasilkan laporan dan audit trail dasar |
+| Fase 5 - Kesiapan Operasional | Penyempurnaan backup, restore, validasi, dan pengujian | Sistem lebih siap dipakai pada operasional harian |
 
-Target:
+## Prioritas Pengembangan Terdekat
 
-- Menstabilkan alur startup, login, logout, dan dashboard.
-- Merapikan kontrak antar layer yang sudah ada.
-- Membersihkan duplikasi struktur antara folder fondasi dan folder target.
-- Menetapkan standar naming, dependency flow, dan tanggung jawab per modul.
+| Urutan | Agenda kerja |
+| --- | --- |
+| 1 | Finalisasi model data inti |
+| 2 | Migrasi ke SQLite |
+| 3 | Integrasi repository dengan use case nyata |
+| 4 | Penyelesaian form manajemen warga |
+| 5 | Penyelesaian modul iuran |
+| 6 | Penyelesaian modul keuangan |
+| 7 | Penyelesaian pelaporan berbasis data nyata |
 
-Deliverable:
+## Catatan Teknis
 
-- Aplikasi bisa dibuka dan dipakai untuk audit dasar.
-- Dokumentasi struktur proyek lebih jelas.
-- Error startup dan error login bisa dilacak lewat log.
+Kondisi teknis saat ini masih menunjukkan bahwa proyek berada pada tahap awal pengembangan. Penyimpanan data masih bersifat sementara karena menggunakan `InMemoryDatabase`, dan sebagian modul masih disusun sebagai scaffold agar struktur besar sistem dapat dibentuk terlebih dahulu. Build proyek saat ini tetap berjalan, namun masih menyisakan warning non-blocking pada konfigurasi EF Core terkait `HasCheckConstraint`, yang sebaiknya dirapikan pada tahap stabilisasi fondasi.
 
-### Fase 2 - Persistensi Data
+## Pendekatan Pengembangan yang Disarankan
 
-Target:
+Pengembangan lanjutan paling aman dilakukan dengan pendekatan bertahap: satu modul diselesaikan secara end-to-end, kemudian diperkuat dengan validasi, logging, dan penyimpanan data yang stabil, sebelum berpindah ke modul berikutnya. Pendekatan ini akan membuat progres proyek lebih terukur dan menjaga kualitas implementasi tetap konsisten.
 
-- Mengganti `InMemoryDatabase` menjadi SQLite untuk penyimpanan nyata.
-- Menyiapkan migrasi database yang lebih stabil.
-- Menetapkan seeding data awal yang aman untuk lingkungan development.
+## Penutup
 
-Deliverable:
-
-- Data warga, user, dan transaksi tidak hilang saat aplikasi ditutup.
-- Struktur database siap dipakai untuk pengembangan modul inti.
-
-### Fase 3 - Modul Inti Operasional
-
-Target:
-
-- Menyelesaikan CRUD data warga.
-- Menyelesaikan modul iuran warga dan histori pembayaran.
-- Menyelesaikan modul pemasukan dan pengeluaran.
-- Menyelesaikan manajemen user dan role dasar.
-
-Deliverable:
-
-- Admin dapat mengelola data warga.
-- Petugas dapat mencatat transaksi iuran dan keuangan.
-- Dashboard menampilkan ringkasan operasional dasar.
-
-### Fase 4 - Pelaporan dan Audit
-
-Target:
-
-- Menyambungkan generator laporan ke data nyata.
-- Menyelesaikan ekspor PDF, Excel, HTML, dan CSV.
-- Menambahkan activity log yang dapat dibaca admin.
-- Menambahkan ringkasan audit untuk aktivitas user.
-
-Deliverable:
-
-- Laporan keuangan, warga, dan sampah bisa dihasilkan dari sistem.
-- Aktivitas pengguna tercatat untuk kebutuhan audit internal.
-
-### Fase 5 - Operasional Produksi
-
-Target:
-
-- Menyelesaikan backup dan restore.
-- Menambahkan validasi data yang lebih kuat.
-- Menambahkan pengujian untuk service penting.
-- Mempersiapkan aplikasi agar layak dipakai harian.
-
-Deliverable:
-
-- Risiko kehilangan data menurun.
-- Kualitas aplikasi lebih stabil.
-- Deployment lokal lebih aman untuk operasional lapangan.
-
-## Backlog Prioritas
-
-Daftar prioritas implementasi berikutnya:
-
-1. Migrasi ke SQLite.
-2. Menyambungkan dashboard ke data nyata.
-3. Menyelesaikan `WargaManagementForm`.
-4. Menyelesaikan modul iuran warga.
-5. Menyelesaikan modul keuangan.
-6. Menambahkan activity log yang benar-benar tersimpan.
-7. Menambahkan export laporan berbasis data.
-
-## Catatan Pengembangan
-
-Beberapa bagian proyek saat ini memang masih scaffold. Itu disengaja agar struktur besar sistem terbentuk lebih dulu, kemudian implementasi detail bisa dilakukan per modul tanpa mengulang fondasi proyek.
-
-Pendekatan pengembangan yang disarankan:
-
-1. Stabilkan fondasi.
-2. Selesaikan satu modul end-to-end.
-3. Tambahkan validasi dan logging.
-4. Baru lanjut ke laporan dan automasi operasional.
-
-## Saran Langkah Berikutnya
-
-Jika proyek ini akan dilanjutkan, urutan terbaik adalah:
-
-1. Finalisasi model data inti.
-2. Pindah ke SQLite.
-3. Hubungkan repository ke use case nyata.
-4. Rapikan UI form utama.
-5. Tambahkan test untuk service login, warga, dan keuangan.
-
-## Build Notes
-
-Build saat ini masih memiliki warning non-blocking pada konfigurasi EF Core terkait `HasCheckConstraint`. Warning ini tidak menghentikan aplikasi berjalan, tetapi sebaiknya dirapikan pada tahap stabilisasi fondasi.
-
-## Kontributor
-
-Repositori ini saat ini disiapkan sebagai basis pengembangan awal untuk akun GitHub `hamk4dev`.
+Repositori ini disiapkan sebagai basis pengembangan awal untuk akun GitHub `hamk4dev`. Dengan fondasi yang sudah ada saat ini, proyek siap dilanjutkan menuju fase integrasi data, penyempurnaan modul inti, dan penyiapan sistem yang lebih siap digunakan dalam operasional nyata.
